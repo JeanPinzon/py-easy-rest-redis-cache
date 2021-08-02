@@ -17,11 +17,11 @@ Cache lib to use with [py-easy-rest](https://github.com/JeanPinzon/py-easy-rest)
 
 ### Integrating with your [py-easy-rest](https://github.com/JeanPinzon/py-easy-rest) app
 
+
 ```python
 #main.py
-
 from py_easy_rest.server import App
-from py-easy-rest-redis-cache.redis_cache import RedisCache
+from py_easy_rest_redis_cache.redis_cache import RedisCache
 
 
 config = {
@@ -37,7 +37,7 @@ config = {
     }]
 }
 
-cache = RedisCache()
+cache = RedisCache("redis://localhost")
 
 pyrApp = App(config, cache=cache)
 
