@@ -20,8 +20,9 @@ Cache lib to use with [py-easy-rest](https://github.com/JeanPinzon/py-easy-rest)
 
 ```python
 #main.py
-from py_easy_rest.server import App
-from py_easy_rest_redis_cache.redis_cache import RedisCache
+from py_easy_rest import PYRSanicAppBuilder
+from py_easy_rest.service import PYRService
+from py_easy_rest_redis_cache import PYRRedisCache
 
 
 config = {
@@ -37,14 +38,15 @@ config = {
     }]
 }
 
-cache = RedisCache("redis://localhost")
+cache = PYRRedisCache("redis://localhost")
 
-pyrApp = App(config, cache=cache)
+service = PYRService(api_config_mock, cache=cache)
+sanic_app = PYRSanicAppBuilder.build(api_config_mock, service)
 
-pyrApp.app.run(
+sanic_app.run(
     host='0.0.0.0',
     port=8000,
     debug=True,
-    auto_reload=True,
 )
+
 ```

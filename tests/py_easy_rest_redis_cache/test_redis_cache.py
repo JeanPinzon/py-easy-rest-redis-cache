@@ -5,7 +5,7 @@ from aiounittest import AsyncTestCase
 
 import aioredis
 
-from py_easy_rest_redis_cache.redis_cache import RedisCache
+from py_easy_rest_redis_cache import PYRRedisCache
 
 
 class RedisPoolMock():
@@ -26,7 +26,7 @@ class RedisPoolMock():
         pass
 
 
-class TestRedisCache(AsyncTestCase):
+class TestPYRRedisCache(AsyncTestCase):
 
     def setUp(self):
         self.redis_pool_mock = Mock(RedisPoolMock)
@@ -39,7 +39,7 @@ class TestRedisCache(AsyncTestCase):
         cache_key = "cache_key"
 
         self.redis_pool_mock.get.return_value = expected_cache_value
-        redis_cache = RedisCache(mocked_connection_string)
+        redis_cache = PYRRedisCache(mocked_connection_string)
 
         cached_value = await redis_cache.get(cache_key)
 
@@ -57,7 +57,7 @@ class TestRedisCache(AsyncTestCase):
         cache_key = "cache_key"
 
         self.redis_pool_mock.get.return_value = None
-        redis_cache = RedisCache(mocked_connection_string)
+        redis_cache = PYRRedisCache(mocked_connection_string)
 
         cached_value = await redis_cache.get(cache_key)
 
@@ -75,7 +75,7 @@ class TestRedisCache(AsyncTestCase):
         cache_key = "cache_key"
         cache_value = "mocked_value"
 
-        redis_cache = RedisCache(mocked_connection_string)
+        redis_cache = PYRRedisCache(mocked_connection_string)
 
         await redis_cache.set(cache_key, cache_value)
 
@@ -92,7 +92,7 @@ class TestRedisCache(AsyncTestCase):
         cache_value = "mocked_value"
         cache_ttl = 666
 
-        redis_cache = RedisCache(mocked_connection_string)
+        redis_cache = PYRRedisCache(mocked_connection_string)
 
         await redis_cache.set(cache_key, cache_value, cache_ttl)
 
@@ -107,7 +107,7 @@ class TestRedisCache(AsyncTestCase):
         mocked_connection_string = "mocked_connection_string"
         cache_key = "cache_key"
 
-        redis_cache = RedisCache(mocked_connection_string)
+        redis_cache = PYRRedisCache(mocked_connection_string)
 
         await redis_cache.delete(cache_key)
 
