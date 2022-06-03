@@ -26,9 +26,7 @@ setuptools.setup(
     ],
     extras_require={
         'tests': [
-            "coveralls==3.2.0",
-            "coverage==5.5",
-            "pytest==6.1.2",
+            "pytest==7.1.2",
             "pytest-asyncio==0.14.0",
             "pytest-cov==2.10.1",
             "flake8==3.8.4",
